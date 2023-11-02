@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/ui/header'
+import { AuthProvider } from '@/providers/auth'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,10 +19,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+  {/* autenticação google */}
+  <AuthProvider>
        {/* antes do children aparece em todas as paginas */}
 <Header/>
        {/* pagina inicial children */}
         {children}
+        </AuthProvider>
+ 
         </body>
     </html>
   )

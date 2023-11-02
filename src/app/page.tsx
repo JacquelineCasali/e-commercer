@@ -1,7 +1,12 @@
+"use client"
+
+import { useSession } from "next-auth/react";
+
+
 
 
 export default function Home() {
 
-  return <div>Home</div>;
+  return <div>ola</div>;
   
 }
