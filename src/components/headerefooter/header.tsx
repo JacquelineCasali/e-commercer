@@ -2,11 +2,11 @@
 "use client";
 
 import { MenuIcon , ShoppingCartIcon, LogInIcon ,LogOutIcon,PercentIcon , ListOrderedIcon, HomeIcon } from "lucide-react";
-import { Button } from "./button";
-import { Card } from "./card"
-import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "./sheet";
+import { Button } from "../ui/button";
+import { Card } from "../ui/card"
+import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet";
 import { signIn, useSession, signOut } from "next-auth/react";
-import { Avatar, AvatarImage } from "./avatar";
+import { Avatar, AvatarImage } from "../ui/avatar";
 import { AvatarFallback } from "@radix-ui/react-avatar";
 import { Separator } from "@/components/ui/separator"
 const Header =()=>{

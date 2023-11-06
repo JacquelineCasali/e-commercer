@@ -100,6 +100,8 @@ async function main() {
         name: "Teclados",
         slug: "keyboards",
         imageUrl: "https://fsw-store.s3.sa-east-1.amazonaws.com/keyboards.png",
+        
+      
       },
     });
 
@@ -198,6 +200,8 @@ async function main() {
 
     await prisma.product.createMany({
       data: keyboards,
+
+      
     });
 
     const headphonesCategory = await prisma.category.create({

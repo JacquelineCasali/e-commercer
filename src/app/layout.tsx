@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Header from '@/components/ui/header'
+import Header from '@/components/headerefooter/header'
 import { AuthProvider } from '@/providers/auth'
+import Footer from '@/components/headerefooter/footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,14 +20,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+  <div className='flex h-full flex-col'>
+  
   {/* autenticação google */}
   <AuthProvider>
        {/* antes do children aparece em todas as paginas */}
 <Header/>
        {/* pagina inicial children */}
+        <div className="flex-1">
         {children}
+
+        </div>
         </AuthProvider>
- 
+ <Footer/>
+ </div>
         </body>
     </html>
   )
