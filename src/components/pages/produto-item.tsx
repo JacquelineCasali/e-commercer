@@ -10,8 +10,8 @@ interface ListaProdutosProps{
 
 const ProdutoItem  = ({product}:ListaProdutosProps) => {
     return (
-        <div className="flex flex-col gap-4 max-w-[170px]">
-  <div className="relative flex h-[170px] w-[170px] items-center justify-center rounded-lg bg-accent">
+        <div className="flex flex-col gap-4  ">
+  <div className="relative flex h-[170px] w-full  items-center justify-center rounded-lg bg-accent">
 
   {/* <div className="relative flex aspect-square w-full items-center justify-center rounded-lg bg-accent"> */}
         <Image

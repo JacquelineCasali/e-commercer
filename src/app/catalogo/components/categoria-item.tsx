@@ -1,14 +1,18 @@
-
-
 import { Category } from "@prisma/client";
 import Image from "next/image";
+import Link from "next/link";
 // traz do prisma
 interface CategoryItemProps{
     category:Category;
 
 }
 const CategoriaItem  = ({category}:CategoryItemProps) => {
-    return ( <div className="flex flex-col">
+    return ( 
+    
+    <Link href={`/categoria/${category.slug}`}>
+
+   
+    <div className="flex flex-col">
      
     {/*  bg-gradient-to-r from-[#5033C3] to-[rgba(80, 51, 195, 0.2)] gradiente */}
        <div className="flex h-[150px] w-full items-center justify-center bg-gradient-to-r from-[#5033C3] to-[rgba(80, 51, 195, 0.2)]
@@ -27,7 +31,8 @@ const CategoriaItem  = ({category}:CategoryItemProps) => {
             <p className="text-sm font-semibold text-center">{category.name}</p>
           
             </div> 
-        </div> );
+        </div>
+        </Link> );
 }
  
 export default CategoriaItem;

@@ -14,9 +14,14 @@ const ListaProdutos = ({products}:ListaProdutosProps) => {
         // [&::-webkit-scrollbar]:hidden
         <div className="flex w-full gap-4 overflow-x-auto px-5  ">
 
-        {products.map(product => <ProdutoItem key={product.id} product={totalPrecoProduto(product)}
+        {products.map((product) => (
+            <div key={product.id} className=" w-[170px] max-w-[170px]">
+ <ProdutoItem  product={totalPrecoProduto(product)}/>
+            </div>
+        )
+       
 
-/>)}
+)}
         </div>
      );
 }

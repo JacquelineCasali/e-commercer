@@ -4,11 +4,12 @@
 import { MenuIcon , ShoppingCartIcon, LogInIcon ,LogOutIcon,PercentIcon , ListOrderedIcon, HomeIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { Card } from "../ui/card"
-import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet";
+import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet";
 import { signIn, useSession, signOut } from "next-auth/react";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { AvatarFallback } from "@radix-ui/react-avatar";
 import { Separator } from "@/components/ui/separator"
+import Link from "next/link";
 const Header =()=>{
 // exibir o botao de fazer o botao de login se o usuario nao estiver logado 
 const {status,data}=useSession();
@@ -86,19 +87,28 @@ const {status,data}=useSession();
   <PercentIcon  />
     Ofertas</Button>   
       
-    <Button variant={"outline"} className="w-full justify-start gap-2">
+
+      {/* para fechar o menu clicando no link SheetClose*/}
+<SheetClose asChild>
+      <Link href={"/catalogo"}>
+      <Button variant={"outline"} className="w-full justify-start gap-2">
   <ListOrderedIcon  />
     Catálogo</Button>  
+      </Link>
+      </SheetClose>
+
       
       </div>
        </SheetContent>
    
        </Sheet>
      
-    
+     
+       <Link href={"/"}>
         <h1 className="text-lg font-semibold">
         <span className="text-primary">FSW</span> Store</h1>
-    
+        </Link>
+
         <Button size="icon" variant="outline">
         <ShoppingCartIcon />
         </Button>
