@@ -22,7 +22,7 @@ const categoria=await prismaClient.category.findFirst({
 
 
     return ( 
-        <div className="flex flex-col gap-8 p-5">
+        <div className="flex flex-col gap-8 p-5 lg:px-16">
       <Link href="/">
      
          <Badge className="w-fit gap-1 border-2 border-primary uppercase px-3 py-[0.5rem] text-base " variant="outline">

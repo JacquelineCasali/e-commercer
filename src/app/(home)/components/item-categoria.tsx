@@ -14,8 +14,9 @@ const  ItemCategoria = ({category}:CategoryItemProps) => {
     return ( 
         <Link href={`/categoria/${category.slug}`}>
     
-    <Badge variant="outline" className="py-3 flex items-center justify-center gap-2 rounded-lg">
-{IconsCategoria[category.slug as keyof typeof IconsCategoria]}    <span className="text-xs font-bold">{category.name}</span>
+    <Badge variant="outline" className="py-3 flex items-center justify-center gap-2 rounded-lg
+      bg-slate-600">
+{IconsCategoria[category.slug as keyof typeof IconsCategoria]}    <span className="text-sm font-bold">{category.name}</span>
     </Badge>
     </Link> );
 }

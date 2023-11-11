@@ -3,6 +3,7 @@ import { ProdutoComDesconto } from "@/helpers/desconto";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
 import { ArrowDownIcon } from "lucide-react";
+import Link from "next/link";
 // traz do prisma
 interface ListaProdutosProps{
     product:ProdutoComDesconto;
@@ -10,7 +11,10 @@ interface ListaProdutosProps{
 
 const ProdutoItem  = ({product}:ListaProdutosProps) => {
     return (
-        <div className="flex flex-col gap-4  ">
+   
+   <Link href={`/produto/${product.slug}`}>
+   
+   <div className="flex flex-col gap-4  ">
   <div className="relative flex h-[170px] w-full  items-center justify-center rounded-lg bg-accent">
 
   {/* <div className="relative flex aspect-square w-full items-center justify-center rounded-lg bg-accent"> */}
@@ -65,7 +69,7 @@ const ProdutoItem  = ({product}:ListaProdutosProps) => {
 
             </div>
         </div>
-
+        </Link>
         );
 };
  

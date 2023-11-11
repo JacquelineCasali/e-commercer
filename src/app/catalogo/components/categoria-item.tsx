@@ -12,7 +12,7 @@ const CategoriaItem  = ({category}:CategoryItemProps) => {
     <Link href={`/categoria/${category.slug}`}>
 
    
-    <div className="flex flex-col">
+    <div className="flex flex-col ">
      
     {/*  bg-gradient-to-r from-[#5033C3] to-[rgba(80, 51, 195, 0.2)] gradiente */}
        <div className="flex h-[150px] w-full items-center justify-center bg-gradient-to-r from-[#5033C3] to-[rgba(80, 51, 195, 0.2)]
