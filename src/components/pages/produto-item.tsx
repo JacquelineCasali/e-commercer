@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Badge } from "../ui/badge";
 import { ArrowDownIcon } from "lucide-react";
 import Link from "next/link";
+ import DescontoBadge from "./desconto-badge";
 // traz do prisma
 interface ListaProdutosProps{
     product:ProdutoComDesconto;
@@ -33,10 +34,10 @@ const ProdutoItem  = ({product}:ListaProdutosProps) => {
     {/* desconto  */}
 
     {product.discountPercentage>0 && (
-        <Badge className="absolute left-3 top-3 px-2 py-[2px]">
-          {/* <ArrowDownIcon/> seta para baixo */}
-            <ArrowDownIcon size={14}/>{product.discountPercentage}%
-        </Badge>
+     <DescontoBadge className="absolute left-3 top-3">
+      {product.discountPercentage}
+    </DescontoBadge>
+    
     )}
             </div>
             <div className="flex flex-col gap-2">

@@ -4,6 +4,7 @@ import './globals.css'
 import Header from '@/components/headerefooter/header'
 import { AuthProvider } from '@/providers/auth'
 import Footer from '@/components/headerefooter/footer'
+import CarrinhoProvider from '@/providers/card'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,15 +25,19 @@ export default function RootLayout({
   
   {/* autenticação google */}
   <AuthProvider>
+    <CarrinhoProvider>
+    <Header/>
+  
        {/* antes do children aparece em todas as paginas */}
-<Header/>
+
        {/* pagina inicial children */}
         <div className="flex-1">
         {children}
-
         </div>
+        <Footer/>
+        </CarrinhoProvider>
         </AuthProvider>
- <Footer/>
+
  </div>
         </body>
     </html>

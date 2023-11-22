@@ -10,6 +10,7 @@ import { Avatar, AvatarImage } from "../ui/avatar";
 import { AvatarFallback } from "@radix-ui/react-avatar";
 import { Separator } from "@/components/ui/separator"
 import Link from "next/link";
+import Carrinho from "../pages/carrinho";
 const Header =()=>{
 // exibir o botao de fazer o botao de login se o usuario nao estiver logado 
 const {status,data}=useSession();
@@ -108,10 +109,20 @@ const {status,data}=useSession();
         <h1 className="text-lg font-semibold lg:text-lg">
         <span className="text-primary mr-2 xl:text-lg">E-commerce</span>de Informática</h1>
         </Link>
+<Sheet>
+  <SheetTrigger asChild>
+
+ 
+
 
         <Button size="icon" variant="outline">
         <ShoppingCartIcon />
         </Button>
+        </SheetTrigger>
+        <SheetContent>
+       <Carrinho/>
+        </SheetContent>
+        </Sheet>
     </Card> 
 
 

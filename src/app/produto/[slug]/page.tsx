@@ -3,6 +3,7 @@ import ProdutoImagem from "./components/produto-imagem";
 import { totalPrecoProduto } from "@/helpers/desconto";
 import ProdutoInformacao from "./components/produto-informacao";
 import ListaProdutos from "@/components/pages/lista-produtos";
+import Titulo from "@/components/pages/titulo";
 
 
 
@@ -43,14 +44,17 @@ const produto=await prismaClient.product.findFirst({
     return ( 
 
       // lg:container lg:mx-auto lg:gap-10 lg:py-10
-      <div className="flex flex-col gap-8 pb-8  lg:container lg:mx-auto lg:gap-10 lg:py-10">
+    //  <div className="flex flex-col gap-8 pb-8  lg:container lg:mx-auto lg:gap-10 lg:py-10">
       <div className="flex flex-col gap-8 lg:flex-col lg:gap-9 ">
 <ProdutoImagem imageUrls={produto.imageUrls} name={produto.name}/>
 <ProdutoInformacao product={totalPrecoProduto(produto)}/>
+ <div>
+ <Titulo>Produtos Recomendados</Titulo>
  <ListaProdutos products={produto.category.products}/>
- 
+
+ </div>
       </div>
-      </div>
+   //   </div>
            );
 }
  

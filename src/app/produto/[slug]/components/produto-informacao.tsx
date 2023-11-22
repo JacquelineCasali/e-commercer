@@ -1,13 +1,12 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
+import DescontoBadge from "@/components/pages/desconto-badge";
 import { Button } from "@/components/ui/button";
-// import DiscountBadge from "@/components/ui/discount-badge";
 import { ProdutoComDesconto } from "@/helpers/desconto";
-// import { CartContext } from "@/providers/cart";
-import { ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon,  TruckIcon } from "lucide-react";
+import { CarrinhoContext } from "@/providers/card";
+import {  ArrowLeftIcon, ArrowRightIcon,    TruckIcon } from "lucide-react";
 
-import { useContext, useState } from "react";
+import {  useContext, useState } from "react";
 
 interface ProdutoInformacaoProps {
   product: ProdutoComDesconto;
@@ -16,23 +15,23 @@ interface ProdutoInformacaoProps {
 const ProdutoInformacao = ({ product }: ProdutoInformacaoProps) => {
  
 //  quantidade 
-    const [quantity, setQuantity] = useState(1);
-
-//   const { addProductToCart } = useContext(CartContext);
+    const [quantidade, setQuantidade] = useState(1);
+// adicionando item ao carrinho
+ const { adicionarProdutoCarrinho } = useContext(CarrinhoContext);
 
 
 // quantidade
   const handleDecreaseQuantityClick = () => {
-    setQuantity((prev) => (prev === 1 ? prev : prev - 1));
+    setQuantidade((prev) => (prev === 1 ? prev : prev - 1));
   };
 
   const handleIncreaseQuantityClick = () => {
-    setQuantity((prev) => prev + 1);
+    setQuantidade((prev) => prev + 1);
   };
 
-//   const handleAddToCartClick = () => {
-//     addProductToCart({ ...product, quantity });
-//   };
+  const handleAddToCartClick = () => {
+    adicionarProdutoCarrinho({ ...product, quantidade });
+  };
 
   return (
     <div className="flex flex-col px-5 lg:w-[68%] lg:rounded-lg lg:bg-accent lg:p-10">
@@ -43,10 +42,11 @@ const ProdutoInformacao = ({ product }: ProdutoInformacaoProps) => {
           R$ {product.totalPreco.toFixed(2)}
         </h1>
         {product.discountPercentage > 0 && (
-          <Badge className="px-2 py-[2px]">
-           <ArrowDownIcon size={14}/>
-            {product.discountPercentage}%
-          </Badge>
+   
+
+          <DescontoBadge >
+          {product.discountPercentage}
+        </DescontoBadge>
         )}
       </div>
 
@@ -67,7 +67,7 @@ const ProdutoInformacao = ({ product }: ProdutoInformacaoProps) => {
           <ArrowLeftIcon size={16} />
         </Button>
 
-        <span>{quantity}</span>
+        <span>{quantidade}</span>
 
         <Button
           size="icon"
@@ -83,12 +83,17 @@ const ProdutoInformacao = ({ product }: ProdutoInformacaoProps) => {
         <p className="text-justify text-sm opacity-60">{product.description}</p>
       </div>
 {/* Adicionar ao carrinho */}
-      <Button
+    
+
+        <Button
         className="mt-8 font-bold uppercase"
-        // onClick={handleAddToCartClick}
+         onClick={handleAddToCartClick}
       >
         Adicionar ao carrinho
       </Button>
+    
+  
+
 {/* tipo de entrega */}
       <div className="mt-5 flex items-center justify-between rounded-lg bg-accent px-5 py-2 lg:bg-[#2A2A2A]">
         <div className="flex items-center gap-2">
