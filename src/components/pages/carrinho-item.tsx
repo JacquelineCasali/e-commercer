@@ -1,25 +1,30 @@
-import { CartProduto } from "@/providers/card";
+import { CarrinhoContext, CartProduto } from "@/providers/card";
 import { ArrowLeftIcon, ArrowRightIcon, TrashIcon } from "lucide-react";
 import Image from "next/image";
 import { Button } from "../ui/button";
-import { useState } from "react";
+import { useContext } from "react";
 interface CarrinhoItemProps{
     produto:CartProduto
 }
 
 const CarrinhoItem = ({produto}:CarrinhoItemProps) => {
-   
-    //  quantidade 
-    const [quantidade, setQuantidade] = useState(1);
-
-// quantidade
-  const handleDecreaseQuantityClick = () => {
-    setQuantidade((prev) => (prev === 1 ? prev : prev - 1));
+   const {diminuiraQuantidadeProduto,aumentaQuantidadeProduto,
+    removeProdutoCarrinho
+}=useContext(CarrinhoContext)
+// //  diminui a quantidade
+  const handleDecreaseProdutoQuantityClick = () => {
+    diminuiraQuantidadeProduto(produto.id)
+  };
+// //  aumenta a quantidade
+  const handleaumentaQuantidadeProdutoClick = () => {
+    aumentaQuantidadeProduto(produto.id)
   };
 
-  const handleIncreaseQuantityClick = () => {
-    setQuantidade((prev) => prev + 1);
-  };
+  //deleta
+const handleremoveProdutoCarrinhoClick=()=>{
+    removeProdutoCarrinho(produto.id)
+}
+
 
    
    
@@ -62,9 +67,9 @@ const CarrinhoItem = ({produto}:CarrinhoItemProps) => {
         className="h-8 w-8"
           size="icon"
           variant="outline"
-          onClick={handleDecreaseQuantityClick}
+         onClick={handleDecreaseProdutoQuantityClick}
         >
-                    <ArrowLeftIcon size={16} />
+        <ArrowLeftIcon size={16} />
         </Button>
 
         <span className="text-xs ml-2 mr-2 lg:text-sm">{produto.quantidade}</span>
@@ -73,7 +78,7 @@ const CarrinhoItem = ({produto}:CarrinhoItemProps) => {
           className="h-8 w-8"
          size="icon"
           variant="outline"
-          onClick={handleIncreaseQuantityClick}
+          onClick={handleaumentaQuantidadeProdutoClick}
         >
           <ArrowRightIcon size={16} />
         </Button>
@@ -81,7 +86,7 @@ const CarrinhoItem = ({produto}:CarrinhoItemProps) => {
       </div>
             </div>
           {/* parte esquerda botao deletar */}   
-            <Button size={'icon'} variant={"outline"}>
+            <Button size={'icon'} variant={"outline"} onClick={handleremoveProdutoCarrinhoClick}>
    <TrashIcon />
             </Button>
         </div>
