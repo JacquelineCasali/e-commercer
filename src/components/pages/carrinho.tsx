@@ -7,12 +7,20 @@ import { totalPrecoProduto } from "@/helpers/desconto";
 import { Separator } from "../ui/separator";
 import { ScrollArea } from "../ui/scroll-area";
 import { Button } from "../ui/button";
+import { criarPagamento } from "@/action/pagamento";
+import { loadStripe } from "@stripe/stripe-js";
 
 
 const Carrinho = () => {
 // Adicionando produto ao carrinho 
 const {products,subtotal,total,totalcomDesconto}=useContext(CarrinhoContext)
 
+//pagamento
+const handlerFinalizarCompraClick=async()=>{
+const compra= await criarPagamento(products);
+const stripe=await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY)
+stripe?.redirectToCheckout({sessionId:compra.id})
+}
     return ( 
       <div className="flex flex-col gap-8 h-full">
                     <Badge className="w-fit gap-1 border-2 border-primary uppercase px-3 py-[0.5rem] text-base  " variant="outline">
@@ -49,7 +57,7 @@ Carrinho
             <p>Total</p>
             <p>R$ {total.toFixed(2)}</p>
          </div>
-          <Button className="uppercase font-bold mt-7">
+          <Button className="uppercase font-bold mt-7" onClick={handlerFinalizarCompraClick}>
             Finalizar Compra
           </Button>
           
