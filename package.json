@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "stripe:listen": "stripe listen --forward-to localhost:3000/api/ordem/pagamento-sucesso"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
@@ -27,7 +28,7 @@
     "next-auth": "^4.24.4",
     "react": "^18",
     "react-dom": "^18",
-    "stripe": "^14.5.0",
+    "stripe": "^14.7.0",
     "tailwind-merge": "^2.0.0",
     "tailwindcss-animate": "^1.0.7"
   },
