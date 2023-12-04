@@ -41,6 +41,10 @@ Carrinho
    </div>
    </ScrollArea>      
    </div>
+ 
+ {products.length>0&&(
+
+ 
       <div className=" flex flex-col gap-3">
       <Separator/>
          <div className="flex items-center justify-between text-xs">
@@ -62,6 +66,9 @@ Carrinho
           </Button>
           
          </div>
+         )
+
+      }
           </div>
 
      );
