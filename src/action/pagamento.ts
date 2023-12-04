@@ -11,8 +11,12 @@ const stripe=new Stripe(process.env.STRIPE_SECRET_KEY,{
 const pagamento= await stripe.checkout.sessions.create({
     payment_method_types:['card'],
     mode:'payment',
-    success_url:"http://localhost:3000",
-    cancel_url:"http://localhost:3000",
+    success_url:process.env.HOST_URL,
+    //success_url:"http://localhost:3000",
+  
+    cancel_url:process.env.HOST_URL,
+    
+    //cancel_url:"http://localhost:3000",
     // metadata:{
     //   products:JSON.stringify(products)
     // },
