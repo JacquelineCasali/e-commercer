@@ -80,16 +80,26 @@ const {status,data}=useSession();
    <LogOutIcon/>
    Fazer Logout</Button>
 )}
-
+ {/* para fechar o menu clicando no link SheetClose asChild */}
+<SheetClose asChild>
+<Link href={"/"}>
     <Button variant={"outline"} className="w-full justify-start gap-2">
   <HomeIcon  />
     Inicio</Button>  
+    </Link>
+
+</SheetClose>
+ 
+    <SheetClose asChild>
+    <Link href={"/ofertas"}>
     <Button variant={"outline"} className="w-full justify-start gap-2">
   <PercentIcon  />
-    Ofertas</Button>   
+    Ofertas</Button>  
+    </Link> 
+    </SheetClose>
       
 
-      {/* para fechar o menu clicando no link SheetClose*/}
+      {/* para fechar o menu clicando no link SheetClose asChild */}
 <SheetClose asChild>
       <Link href={"/catalogo"}>
       <Button variant={"outline"} className="w-full justify-start gap-2">
@@ -119,7 +129,7 @@ const {status,data}=useSession();
         <ShoppingCartIcon />
         </Button>
         </SheetTrigger>
-        <SheetContent>
+        <SheetContent >
        <Carrinho/>
         </SheetContent>
         </Sheet>

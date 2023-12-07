@@ -4,7 +4,9 @@ import './globals.css'
 import Header from '@/components/headerefooter/header'
 import { AuthProvider } from '@/providers/auth'
 import Footer from '@/components/headerefooter/footer'
-import CarrinhoProvider from '@/providers/card'
+import CarrinhoProvider from '@/providers/cart'
+
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,6 +27,7 @@ export default function RootLayout({
   
   {/* autenticação google */}
   <AuthProvider>
+   
     <CarrinhoProvider>
     <Header/>
   

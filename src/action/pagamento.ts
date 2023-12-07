@@ -1,5 +1,5 @@
 "use server"
-import {CartProduto} from "@/providers/card"
+import {CartProduto} from "@/providers/cart"
 import Stripe from "stripe"
  export const criarPagamento =async (products:CartProduto[]) => {
 //Criar o pagamento 

@@ -1,8 +1,7 @@
 import { ProdutoComDesconto } from "@/helpers/desconto";
 
 import Image from "next/image";
-import { Badge } from "../ui/badge";
-import { ArrowDownIcon } from "lucide-react";
+
 import Link from "next/link";
  import DescontoBadge from "./desconto-badge";
 // traz do prisma

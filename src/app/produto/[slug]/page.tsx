@@ -45,7 +45,7 @@ const produto=await prismaClient.product.findFirst({
 
       // lg:container lg:mx-auto lg:gap-10 lg:py-10
     //  <div className="flex flex-col gap-8 pb-8  lg:container lg:mx-auto lg:gap-10 lg:py-10">
-      <div className="flex flex-col gap-8 lg:flex-col lg:gap-9 ">
+      <div className="flex flex-col gap-8 lg:flex-col lg:gap-9  lg:mt-8 lg:ml-14 ">
 <ProdutoImagem imageUrls={produto.imageUrls} name={produto.name}/>
 <ProdutoInformacao product={totalPrecoProduto(produto)}/>
  <div>

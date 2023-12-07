@@ -3,11 +3,10 @@
 import DescontoBadge from "@/components/pages/desconto-badge";
 import { Button } from "@/components/ui/button";
 import { ProdutoComDesconto } from "@/helpers/desconto";
-import { CarrinhoContext } from "@/providers/card";
+import { CarrinhoContext } from "@/providers/cart";
 import {  ArrowLeftIcon, ArrowRightIcon,    TruckIcon } from "lucide-react";
 
 import {  useContext, useState } from "react";
-
 interface ProdutoInformacaoProps {
   product: ProdutoComDesconto;
 }

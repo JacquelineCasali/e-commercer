@@ -1,7 +1,7 @@
 import { ShoppingCartIcon } from "lucide-react";
 import { Badge } from "../ui/badge";
 import { useContext } from "react";
-import { CarrinhoContext } from "@/providers/card";
+import { CarrinhoContext } from "@/providers/cart";
 import CarrinhoItem from "./carrinho-item";
 import { totalPrecoProduto } from "@/helpers/desconto";
 import { Separator } from "../ui/separator";
@@ -9,16 +9,29 @@ import { ScrollArea } from "../ui/scroll-area";
 import { Button } from "../ui/button";
 import { criarPagamento } from "@/action/pagamento";
 import { loadStripe } from "@stripe/stripe-js";
+import { useSession } from "next-auth/react";
+import { criarOrder } from "@/action/order";
 
 
 const Carrinho = () => {
-// Adicionando produto ao carrinho 
+const {data}=useSession();
+   // Adicionando produto ao carrinho 
 const {products,subtotal,total,totalcomDesconto}=useContext(CarrinhoContext)
 
 //pagamento
 const handlerFinalizarCompraClick=async()=>{
+//redirecionar para o login
+if(!data?.user){
+   return
+}
+await criarOrder(products,(data?.user as any).id)
 const compra= await criarPagamento(products);
 const stripe=await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY)
+
+// criar pedido no banco
+
+
+
 stripe?.redirectToCheckout({sessionId:compra.id})
 }
     return ( 

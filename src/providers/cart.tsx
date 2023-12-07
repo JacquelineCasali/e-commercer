@@ -1,7 +1,7 @@
 "use client";
 
 import { ProdutoComDesconto } from "@/helpers/desconto";
-import { ReactNode, createContext, useMemo, useState } from "react";
+import { ReactNode, createContext,  useMemo, useState } from "react";
 
 // armazandando a quantidade de produto
 export interface CartProduto extends ProdutoComDesconto{
@@ -39,6 +39,21 @@ export const CarrinhoContext = createContext<ICartContext>({
 
 const CarrinhoProvider = ({children}:{children:ReactNode}) => {
    const [products,setProducts]=useState<CartProduto[]>([]);
+
+
+  // useEffect(() => {
+  //   setProducts(
+  //     JSON.parse(localStorage.getItem("@site-compras/cart-products") || "[]"),
+  //   );
+  // }, []);
+
+  // useEffect(() => {
+  //   localStorage.setItem("@site-compras/cart-products", JSON.stringify(products));
+  // }, [products]);
+
+
+
+
    // claculo do subtotal sem desconto 
 const subtotal =useMemo(()=>{
   return products.reduce((acc,produto)=>{

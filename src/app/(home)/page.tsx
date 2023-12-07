@@ -3,6 +3,7 @@ import ListaProdutos from '../../components/pages/lista-produtos';
 import { prismaClient } from '@/lib/prisma';
 import Titulo from '../../components/pages/titulo';
 import PromoBanner from './components/promo-banner';
+import Link from 'next/link';
 
 export default async function Home() {
 
@@ -41,7 +42,10 @@ export default async function Home() {
 <Categorias />
 </div>
 <div className='px-7  lg:px-28  ' >
-<Titulo>Ofertas</Titulo>
+ <Link href="ofertas">
+ <Titulo>Ofertas</Titulo>
+  </Link> 
+
  <ListaProdutos products={oferta} />
 </div>
 
@@ -51,7 +55,12 @@ export default async function Home() {
     alt="Até 55% de desconto em mouse"
     />
 <div className='lg:px-28  ' >
-  <Titulo>Teclados</Titulo>
+<Link href="categoria/keyboards">
+<Titulo>Teclados</Titulo>
+  </Link> 
+ 
+ 
+ 
 <ListaProdutos products={ofertateclado}  />
 </div>
 {/* banner-fone  */}
@@ -63,7 +72,10 @@ export default async function Home() {
 </div>
 
 <div className='lg:px-28 '  >
-  <Titulo>Mouses</Titulo>
+<Link href="categoria/mouses">
+<Titulo>Mouses</Titulo>
+  </Link> 
+ 
 <ListaProdutos products={ofertamouse} />
 </div>
 
