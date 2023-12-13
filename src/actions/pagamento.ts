@@ -1,7 +1,7 @@
 "use server"
 import {CartProduto} from "@/providers/cart"
 import Stripe from "stripe"
- export const criarPagamento =async (products:CartProduto[]) => {
+ export const criarPagamento =async (products:CartProduto[], orderId:string) => {
 //Criar o pagamento 
 const stripe=new Stripe(process.env.STRIPE_SECRET_KEY,{
     apiVersion:"2023-10-16",
@@ -17,9 +17,9 @@ const pagamento= await stripe.checkout.sessions.create({
     cancel_url:process.env.HOST_URL,
     
     //cancel_url:"http://localhost:3000",
-    // metadata:{
-    //   products:JSON.stringify(products)
-    // },
+    metadata:{
+     orderId,
+    },
   //definindo o produto
     line_items:products.map(produto=>{
         return{

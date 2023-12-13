@@ -7,25 +7,35 @@ import { totalPrecoProduto } from "@/helpers/desconto";
 import { Separator } from "../ui/separator";
 import { ScrollArea } from "../ui/scroll-area";
 import { Button } from "../ui/button";
-import { criarPagamento } from "@/action/pagamento";
+import { criarPagamento } from "@/actions/pagamento";
 import { loadStripe } from "@stripe/stripe-js";
 import { useSession } from "next-auth/react";
-import { criarOrder } from "@/action/order";
+import { criarPedido } from "@/actions/pedido";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Carrinho = () => {
-const {data}=useSession();
+const {status,data}=useSession();
    // Adicionando produto ao carrinho 
 const {products,subtotal,total,totalcomDesconto}=useContext(CarrinhoContext)
 
 //pagamento
 const handlerFinalizarCompraClick=async()=>{
+   if (status === "unauthenticated") {
+             toast.error("Faça login para continuar!",
+             {position: toast.POSITION.BOTTOM_RIGHT,
+            });
+             return
+            }
+
+
 //redirecionar para o login
-if(!data?.user){
+if(!data?.user)
    return
-}
-await criarOrder(products,(data?.user as any).id)
-const compra= await criarPagamento(products);
+
+const order=await criarPedido(products,(data?.user as any).id)
+const compra= await criarPagamento(products,order.id);
 const stripe=await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY)
 
 // criar pedido no banco
@@ -33,6 +43,8 @@ const stripe=await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY)
 
 
 stripe?.redirectToCheckout({sessionId:compra.id})
+
+
 }
     return ( 
       <div className="flex flex-col gap-8 h-full">
@@ -82,6 +94,11 @@ Carrinho
          )
 
       }
+     
+      <ToastContainer    /> 
+
+     
+
           </div>
 
      );

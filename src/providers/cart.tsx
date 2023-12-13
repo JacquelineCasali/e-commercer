@@ -1,7 +1,7 @@
 "use client";
 
 import { ProdutoComDesconto } from "@/helpers/desconto";
-import { ReactNode, createContext,  useMemo, useState } from "react";
+import { ReactNode, createContext, useEffect, useMemo, useState } from "react";
 
 // armazandando a quantidade de produto
 export interface CartProduto extends ProdutoComDesconto{
@@ -38,18 +38,21 @@ export const CarrinhoContext = createContext<ICartContext>({
  
 
 const CarrinhoProvider = ({children}:{children:ReactNode}) => {
-   const [products,setProducts]=useState<CartProduto[]>([]);
+   const [products,setProducts]=useState<CartProduto[]>(
+    JSON.parse(localStorage.getItem("@site-compras/cart-products") ||"[]"),
+   );
+
+// quando atualizar a pagina manter o carrinho preenchido
+// useEffect(() => {
+//   setProducts(
+//     JSON.parse(localStorage.getItem("@site-compras/cart-products") || "[]"),
+//   );
+// }, []);
 
 
-  // useEffect(() => {
-  //   setProducts(
-  //     JSON.parse(localStorage.getItem("@site-compras/cart-products") || "[]"),
-  //   );
-  // }, []);
-
-  // useEffect(() => {
-  //   localStorage.setItem("@site-compras/cart-products", JSON.stringify(products));
-  // }, [products]);
+useEffect(()=>{
+  localStorage.setItem("@site-compras/cart-products",JSON.stringify(products));
+},[products])
 
 
 

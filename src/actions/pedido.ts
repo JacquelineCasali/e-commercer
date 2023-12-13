@@ -3,10 +3,10 @@ import { prismaClient } from "@/lib/prisma";
 import { CartProduto } from "@/providers/cart";
 
 
-export const criarOrder =async (cartProducts:CartProduto[], 
+export const criarPedido =async (cartProducts:CartProduto[], 
     userId: string, ) => {
      
-    const order = await prismaClient.order.create({
+    const pedido = await prismaClient.order.create({
         data: {
           userId,
           status: "WAITING_FOR_PAYMENT",
@@ -23,5 +23,5 @@ export const criarOrder =async (cartProducts:CartProduto[],
         },
       });
     
-      return order;
+      return pedido;
     };

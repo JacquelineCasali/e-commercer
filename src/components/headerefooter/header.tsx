@@ -1,7 +1,7 @@
 // padrao do next
 "use client";
 
-import { MenuIcon , ShoppingCartIcon, LogInIcon ,LogOutIcon,PercentIcon , ListOrderedIcon, HomeIcon } from "lucide-react";
+import { MenuIcon , ShoppingCartIcon, LogInIcon ,LogOutIcon,PercentIcon , ListOrderedIcon, HomeIcon, PackageSearchIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { Card } from "../ui/card"
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet";
@@ -80,12 +80,24 @@ const {status,data}=useSession();
    <LogOutIcon/>
    Fazer Logout</Button>
 )}
- {/* para fechar o menu clicando no link SheetClose asChild */}
+
 <SheetClose asChild>
 <Link href={"/"}>
     <Button variant={"outline"} className="w-full justify-start gap-2">
   <HomeIcon  />
     Inicio</Button>  
+    </Link>
+
+</SheetClose>
+
+
+
+ {/* para fechar o menu clicando no link SheetClose asChild */}
+<SheetClose asChild>
+<Link href={"/meus-pedidos"}>
+    <Button variant={"outline"} className="w-full justify-start gap-2">
+  <PackageSearchIcon  />
+    Meus Pedidos</Button>  
     </Link>
 
 </SheetClose>
