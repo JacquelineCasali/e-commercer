@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "prisma generate"
-    
-  },
+   
+     },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
   },
