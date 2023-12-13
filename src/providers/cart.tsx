@@ -39,15 +39,15 @@ export const CarrinhoContext = createContext<ICartContext>({
 
 const CarrinhoProvider = ({children}:{children:ReactNode}) => {
    const [products,setProducts]=useState<CartProduto[]>(
-    JSON.parse(localStorage.getItem("@site-compras/cart-products") ||"[]"),
-   );
+   [])
+  
 
 // quando atualizar a pagina manter o carrinho preenchido
-// useEffect(() => {
-//   setProducts(
-//     JSON.parse(localStorage.getItem("@site-compras/cart-products") || "[]"),
-//   );
-// }, []);
+useEffect(() => {
+  setProducts(
+    JSON.parse(localStorage.getItem("@site-compras/cart-products") || "[]"),
+  );
+}, []);
 
 
 useEffect(()=>{
